@@ -180,4 +180,62 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   if (blogCta) observer.observe(blogCta);
+
+  // Бургер-меню
+  const burgerMenu = document.getElementById("burger-menu");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileMenuClose = document.getElementById("mobile-menu-close");
+
+  function toggleMobileMenu() {
+    burgerMenu.classList.toggle("active");
+    mobileMenu.classList.toggle("active");
+    document.body.style.overflow = mobileMenu.classList.contains("active")
+      ? "hidden"
+      : "";
+  }
+
+  function closeMobileMenu() {
+    burgerMenu.classList.remove("active");
+    mobileMenu.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  burgerMenu.addEventListener("click", toggleMobileMenu);
+  mobileMenuClose.addEventListener("click", closeMobileMenu);
+
+  // Закрытие меню при клике на ссылку
+  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", closeMobileMenu);
+  });
+
+  // Закрытие меню при клике на кнопку BOOK NOW в мобильном меню
+  document
+    .querySelector(".mobile-book-now-btn")
+    .addEventListener("click", function () {
+      closeMobileMenu();
+      document.querySelector(".activities").scrollIntoView({
+        behavior: "smooth",
+      });
+    });
+
+  // Закрытие меню при клике на область вне контента меню
+  mobileMenu.addEventListener("click", function (e) {
+    if (e.target === mobileMenu) {
+      closeMobileMenu();
+    }
+  });
+
+  // Закрытие меню при ресайзе окна (на десктоп)
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1024) {
+      closeMobileMenu();
+    }
+  });
+
+  // Закрытие меню при нажатии Escape
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && mobileMenu.classList.contains("active")) {
+      closeMobileMenu();
+    }
+  });
 });
