@@ -123,7 +123,8 @@
           <div class="video-container">
             <video
               controls
-              poster="{{ url_for('static', filename='images/jais-flight-poster.jpg') }}"
+              preload="none"
+              poster="{{ url_for('static', filename='images/jais-flight-1.jpg') }}"
             >
               <source
                 src="{{ url_for('static', filename='videos/jais-flight.mp4') }}"
@@ -172,7 +173,8 @@
           <div class="video-container">
             <video
               controls
-              poster="{{ url_for('static', filename='images/sky-tour-poster.jpg') }}"
+              preload="none"
+              poster="{{ url_for('static', filename='images/sky-tour-1.jpg') }}"
             >
               <source
                 src="{{ url_for('static', filename='videos/sky-tour.mp4') }}"
@@ -222,7 +224,8 @@
           <div class="video-container">
             <video
               controls
-              poster="{{ url_for('static', filename='images/bear-grylls-poster.jpg') }}"
+              preload="none"
+              poster="{{ url_for('static', filename='images/bear-grylls-1.jpg') }}"
             >
               <source
                 src="{{ url_for('static', filename='videos/bear-grylls.mp4') }}"
