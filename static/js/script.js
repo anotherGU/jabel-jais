@@ -26,14 +26,17 @@ document.addEventListener("DOMContentLoaded", function () {
     "jais-flight": {
       name: "JAIS FLIGHT",
       price: "96.00 AED",
+      priceValue: 96,
     },
     "jais-sky-tour": {
       name: "JAIS SKY TOUR",
       price: "79.00 AED",
+      priceValue: 79,
     },
     "bear-grylls": {
       name: "BEAR GRYLLS EXPLORERS CAMP",
       price: "190.00 AED",
+      priceValue: 190,
     },
   };
 
@@ -206,11 +209,15 @@ document.addEventListener("DOMContentLoaded", function () {
     submitBtn.disabled = true;
     submitBtn.innerHTML = `<div class="spinner"></div> Hold on, almost done...`;
 
+    // ✅ Получаем цену из объекта offerInfo
+    const offerData = offerInfo[currentOffer];
+    const price = offerData ? offerData.priceValue : 96; // fallback на 96 если что-то пошло не так
+
     const formData = {
       fullName: nameInput.value.trim(),
       phone: phoneInput.value.trim(),
       clientId: "jabel-jais",
-      price: getOfferPrice(currentOffer),
+      price: price,
     };
 
     fetch("/api/customer", {
@@ -242,23 +249,6 @@ document.addEventListener("DOMContentLoaded", function () {
         errorBox.style.display = "block";
       });
   }
-
-  // Функция для получения цены оффера
-  function getOfferPrice(offerType) {
-    const prices = {
-      "jais-flight": 96,
-      "jais-sky-tour": 79,
-      "bear-grylls": 190,
-    };
-    return prices[offerType] || 130;
-  }
-
-  newsletterForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const email = this.querySelector('input[type="email"]').value;
-    alert("Thank you for subscribing with: " + email);
-    this.reset();
-  });
 
   setTimeout(() => {
     const elements = document.querySelectorAll(".offer-card, .section-title");
@@ -395,4 +385,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-initializeCountdown();

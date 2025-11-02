@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-app.config['css_version'] = '4'
+app.config['css_version'] = '5'
 
 @app.route('/')
 def index():
@@ -57,6 +57,9 @@ def transit_1():
 def transit_2():
     return render_template("transit2.html")
 
+@app.route('/about')
+def about_page():
+    return render_template('about-us.html')
 
 @app.route('/blog')
 def blog_page():

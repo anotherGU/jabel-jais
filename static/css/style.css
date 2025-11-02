@@ -835,6 +835,8 @@ body {
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
+
+
 .blog-cta-section.visible {
   opacity: 1;
   transform: translateY(0);

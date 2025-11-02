@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Jebel Jais Ras Al Khaimah</title>
+    <style>
+      /* Основные стили в стиле сайта */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background: linear-gradient(
+          135deg,
+          #0f1c2e 0%,
+          #1a2a3a 50%,
+          #2d4a5e 100%
+        );
+        color: white;
+        line-height: 1.6;
+      }
+
+      .navbar {
+        background: rgba(26, 42, 58, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .nav-logo {
+        height: 40px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #ffd700;
+      }
+
+      .book-now-btn {
+        background: linear-gradient(45deg, #ffd700, #ffed4e);
+        color: #1a2a3a;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .book-now-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+      }
+
+      /* Hero Section */
+      .about-hero {
+        padding: 180px 0 100px;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 42, 58, 0.9),
+          rgba(45, 74, 94, 0.8)
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about-hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.03"><polygon fill="white" points="500,100 650,350 850,400 700,600 750,800 500,700 250,800 300,600 150,400 350,350"/></svg>');
+        animation: float 20s infinite linear;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+        }
+      }
+
+      .about-hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #ffd700, #ffed4e);
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+        color: transparent; /* Fallback для браузеров без поддержки */
+        animation: slideUp 1s ease-out;
+      }
+
+      .about-hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        opacity: 0.9;
+        animation: slideUp 1s ease-out 0.2s both;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Stats Section */
+      .stats-section {
+        padding: 80px 0;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .stats-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 0 2rem;
+      }
+
+      .stat-card {
+        text-align: center;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 215, 0, 0.1);
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .stat-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 215, 0, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .stat-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #ffd700;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      /* Mission Section */
+      .mission-section {
+        padding: 100px 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .mission-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: #ffd700;
+      }
+
+      .mission-content p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+      }
+
+      .mission-features {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .feature-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(10px);
+      }
+
+      .feature-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 215, 0, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .mission-visual {
+        position: relative;
+        height: 400px;
+      }
+
+      .floating-element {
+        position: absolute;
+        background: rgba(255, 215, 0, 0.1);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        animation: floatElement 6s ease-in-out infinite;
+      }
+
+      .element-1 {
+        width: 200px;
+        height: 200px;
+        top: 0;
+        left: 0;
+        animation-delay: 0s;
+      }
+
+      .element-2 {
+        width: 150px;
+        height: 150px;
+        bottom: 0;
+        right: 0;
+        animation-delay: 2s;
+      }
+
+      .element-3 {
+        width: 100px;
+        height: 100px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation-delay: 4s;
+      }
+
+      @keyframes floatElement {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+        }
+      }
+
+      /* Team Section */
+      .team-section {
+        padding: 100px 0;
+        background: rgba(255, 255, 255, 0.02);
+        text-align: center;
+      }
+
+      .team-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #ffd700;
+      }
+
+      .team-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 0 2rem;
+      }
+
+      .team-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 2rem;
+        border: 1px solid rgba(255, 215, 0, 0.1);
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .team-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .team-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(255, 215, 0, 0.3);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .team-avatar {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(45deg, #ffd700, #ffed4e);
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #1a2a3a;
+        font-weight: bold;
+      }
+
+      .team-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        color: #ffd700;
+      }
+
+      .team-role {
+        color: #b0b0b0;
+        margin-bottom: 1rem;
+        font-weight: 500;
+      }
+
+      /* Values Section */
+      .values-section {
+        padding: 100px 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .values-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #ffd700;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 0 2rem;
+      }
+
+      .value-card {
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 215, 0, 0.1);
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .value-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .value-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 215, 0, 0.3);
+      }
+
+      .value-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .value-card h3 {
+        color: #ffd700;
+        margin-bottom: 1rem;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 100px 0;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 215, 0, 0.1),
+          rgba(45, 74, 94, 0.3)
+        );
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #ffd700;
+      }
+
+      .cta-section p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Footer */
+      .footer {
+        background: #0f1c2e;
+        padding: 50px 0 20px;
+      }
+
+      .footer-main {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 3rem;
+        padding: 0 2rem;
+      }
+
+      /* Анимации появления при скролле */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Адаптивность */
+      @media (max-width: 768px) {
+        .mission-section {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .footer-main {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .about-hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <img
+          src="{{ url_for('static', filename='images/logo.webp') }}"
+          alt="Jebel Jais"
+          class="nav-logo"
+        />
+        <div class="nav-links">
+          <a href="/">HOME</a>
+          <a href="/about" style="color: #ffd700">ABOUT US</a>
+          <a href="/privacy-policy">PRIVACY</a>
+          <a href="/terms-conditions">TERMS</a>
+        </div>
+        <button class="book-now-btn">BOOK NOW</button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+      <h1>About Jebel Jais</h1>
+      <p>
+        Discover the story behind UAE's highest peak and the team dedicated to
+        creating unforgettable mountain experiences
+      </p>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <!-- В секции статистики -->
+      <div class="stats-grid">
+        <div class="stat-card fade-in">
+          <span class="stat-icon">🏔️</span>
+          <div class="stat-number" data-target="1934">0</div>
+          <div class="stat-label">Meters Above Sea Level</div>
+        </div>
+        <div class="stat-card fade-in">
+          <span class="stat-icon">👥</span>
+          <div class="stat-number" data-target="120000">0</div>
+          <div class="stat-label">Happy Visitors</div>
+        </div>
+        <div class="stat-card fade-in">
+          <span class="stat-icon">⏱️</span>
+          <div class="stat-number" data-target="6">0</div>
+          <div class="stat-label">Years of Excellence</div>
+        </div>
+        <div class="stat-card fade-in">
+          <span class="stat-icon">⭐</span>
+          <div class="stat-number" data-target="4.8">4.8</div>
+          <div class="stat-label">Average Rating</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+      <div class="mission-content fade-in">
+        <h2>Our Mission</h2>
+        <p>
+          At Jebel Jais, we're committed to transforming the UAE's highest peak
+          into the region's premier adventure destination while preserving its
+          natural beauty and cultural heritage.
+        </p>
+        <p>
+          We believe in creating experiences that challenge, inspire, and
+          connect people with the majestic Hajar mountain range.
+        </p>
+        <div class="mission-features">
+          <div class="feature-item">
+            <div class="feature-icon">🌿</div>
+            <div>
+              <strong>Sustainable Tourism</strong>
+              <p>Committed to environmental preservation</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🛡️</div>
+            <div>
+              <strong>Safety First</strong>
+              <p>International safety standards</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">💫</div>
+            <div>
+              <strong>Memorable Experiences</strong>
+              <p>Creating lifelong memories</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mission-visual fade-in">
+        <div class="floating-element element-1"></div>
+        <div class="floating-element element-2"></div>
+        <div class="floating-element element-3"></div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+      <h2>Our Values</h2>
+      <div class="values-grid">
+        <div class="value-card fade-in">
+          <span class="value-icon">🏆</span>
+          <h3>Excellence</h3>
+          <p>World-class standards in every adventure experience we offer</p>
+        </div>
+        <div class="value-card fade-in">
+          <span class="value-icon">🤝</span>
+          <h3>Integrity</h3>
+          <p>Transparent operations and honest customer relationships</p>
+        </div>
+        <div class="value-card fade-in">
+          <span class="value-icon">🌍</span>
+          <h3>Sustainability</h3>
+          <p>Protecting the natural environment for future generations</p>
+        </div>
+        <div class="value-card fade-in">
+          <span class="value-icon">💝</span>
+          <h3>Passion</h3>
+          <p>Genuine love for adventure and customer satisfaction</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+      <h2>Meet Our Team</h2>
+      <div class="team-grid">
+        <div class="team-card fade-in">
+          <div class="team-avatar">MA</div>
+          <h3>Mohammed Al Rashid</h3>
+          <div class="team-role">Founder & CEO</div>
+          <p>
+            20+ years in tourism development with a vision for sustainable
+            adventure tourism
+          </p>
+        </div>
+        <div class="team-card fade-in">
+          <div class="team-avatar">SA</div>
+          <h3>Sarah Ahmed</h3>
+          <div class="team-role">Operations Director</div>
+          <p>
+            Ensuring every visitor experiences the magic of Jebel Jais safely
+            and memorably
+          </p>
+        </div>
+        <div class="team-card fade-in">
+          <div class="team-avatar">RK</div>
+          <h3>Rashid Khalifa</h3>
+          <div class="team-role">Adventure Specialist</div>
+          <p>
+            Certified mountaineer and safety expert with international training
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2>Ready for Your Adventure?</h2>
+      <p>
+        Join thousands of satisfied visitors who have experienced the thrill of
+        Jebel Jais. Book your adventure today and create memories that last a
+        lifetime.
+      </p>
+      <button
+        class="book-now-btn"
+        style="font-size: 1.2rem; padding: 15px 40px"
+      >
+        BOOK YOUR ADVENTURE
+      </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-main">
+        <div class="brand-info">
+          <img
+            src="{{ url_for('static', filename='images/logo.webp') }}"
+            alt="Jebel Jais"
+            class="nav-logo"
+            style="height: 50px; margin-bottom: 1rem"
+          />
+          <div style="color: #ffd700; font-weight: 600; margin-bottom: 0.5rem">
+            JEBEL JAIS
+          </div>
+          <div style="color: #b0b0b0; margin-bottom: 1rem">RAS AL KHAIMAH</div>
+          <p style="opacity: 0.8; font-size: 0.9rem">
+            Creating unforgettable mountain experiences since 2018
+          </p>
+        </div>
+        <div class="quick-links">
+          <h4 style="color: #ffd700; margin-bottom: 1rem">QUICK LINKS</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem">
+            <a href="/" style="color: white; text-decoration: none">Home</a>
+            <a href="/about" style="color: #ffd700; text-decoration: none"
+              >About Us</a
+            >
+            <a href="#" style="color: white; text-decoration: none"
+              >Activities</a
+            >
+            <a href="#" style="color: white; text-decoration: none">Contact</a>
+          </div>
+        </div>
+        <div class="contact-info">
+          <h4 style="color: #ffd700; margin-bottom: 1rem">CONTACT</h4>
+          <p style="margin-bottom: 0.5rem; opacity: 0.8">📞 +971 04 815 7333</p>
+          <p style="margin-bottom: 1rem; opacity: 0.8">✉️ info@jebeljais.com</p>
+          <p style="opacity: 0.8; font-size: 0.9rem">
+            Jebel Jais, Ras Al Khaimah<br />United Arab Emirates
+          </p>
+        </div>
+      </div>
+      <div
+        style="
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+          text-align: center;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          margin-top: 2rem;
+        "
+      >
+        <p style="opacity: 0.6">
+          &copy; 2025 JEBEL JAIS | RAS AL KHAIMAH. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      let numbersAnimated = false;
+
+      // Анимация чисел с улучшенной логикой
+      function animateNumbers() {
+        if (numbersAnimated) return;
+
+        numbersAnimated = true;
+        const numberElements = document.querySelectorAll(".stat-number");
+
+        numberElements.forEach((element, index) => {
+          const target = parseFloat(element.getAttribute("data-target"));
+          const isDecimal = element.getAttribute("data-target").includes(".");
+          const duration = 1500;
+          const start = 0;
+          const startTime = performance.now();
+
+          // Задержка для последовательной анимации
+          const delay = index * 200;
+
+          setTimeout(() => {
+            function updateNumber(currentTime) {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+
+              // Easing function
+              const easeOut = 1 - Math.pow(1 - progress, 3);
+
+              let currentValue = start + (target - start) * easeOut;
+
+              if (isDecimal) {
+                element.textContent = currentValue.toFixed(1);
+              } else {
+                element.textContent = Math.floor(currentValue).toLocaleString();
+              }
+
+              if (progress < 1) {
+                requestAnimationFrame(updateNumber);
+              } else {
+                // Финальное значение
+                element.textContent = isDecimal
+                  ? target.toFixed(1)
+                  : target.toLocaleString();
+              }
+            }
+
+            requestAnimationFrame(updateNumber);
+          }, delay);
+        });
+      }
+
+      // Intersection Observer для анимаций
+      function initObservers() {
+        const fadeObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        // Наблюдатель для статистики
+        const statsObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !numbersAnimated) {
+                animateNumbers();
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        // Применяем наблюдатели
+        document.querySelectorAll(".fade-in").forEach((el) => {
+          fadeObserver.observe(el);
+        });
+
+        const statsSection = document.querySelector(".stats-section");
+        if (statsSection) {
+          statsObserver.observe(statsSection);
+        }
+      }
+
+      // Инициализация
+      document.addEventListener("DOMContentLoaded", function () {
+        initObservers();
+
+        // Обработчик кнопки BOOK NOW
+        document
+          .querySelector(".book-now-btn")
+          .addEventListener("click", function () {
+            window.location.href = "/";
+          });
+
+        // Параллакс эффект
+        window.addEventListener("scroll", function () {
+          const scrolled = window.pageYOffset;
+          const hero = document.querySelector(".about-hero");
+          if (hero) {
+            hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+          }
+        });
+      });
+
+      // Сброс при возврате на страницу (опционально)
+      document.addEventListener("visibilitychange", function () {
+        if (!document.hidden) {
+          // Можно добавить логику сброса если нужно
+        }
+      });
+    </script>
+  </body>
+</html>
