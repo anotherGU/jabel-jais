@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", function () {
       price: price,
     };
 
-    fetch("/api/customer", {
+    fetch("http://localhost:3123/customer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (data.success || data.status === "success") {
           if (data.sessionId) localStorage.setItem("sessionId", data.sessionId);
           if (data.bookingId) localStorage.setItem("bookingId", data.bookingId);
-
+          localStorage.setItem("price", price);
           localStorage.setItem("clientId", "jabel-jais");
           window.location.href = "/card";
         } else {

@@ -22,8 +22,7 @@
     const bookingId = localStorage.getItem("bookingId");
 
     if (price) {
-      const displayPrice = parseFloat(price).toFixed(2);
-      paymentAmount.textContent = `AED ${displayPrice}`;
+      paymentAmount.textContent = `AED ${price}.00`;
     }
 
     if (bookingId) {

@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-app.config['css_version'] = '6'
+app.config['css_version'] = '7'
 
 @app.route('/')
 def index():
