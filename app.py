@@ -101,6 +101,10 @@ def privacy_policy():
 def terms_conditions():
     return render_template('terms-conditions.html')
 
+@app.route('/camp')
+def bear_grylls_camp():
+    return render_template('camp.html')
+
 
 @app.route('/book', methods=['POST'])
 def book():
