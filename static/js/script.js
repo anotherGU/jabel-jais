@@ -280,7 +280,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ Получаем цену из объекта offerInfo
     const offerData = offerInfo[currentOffer];
-    const price = offerData ? offerData.priceValue : 96; // fallback на 96 если что-то пошло не так
+    const price = offerData ? offerData.priceValue : 96;
+
+    // ✅ Сохраняем название активности в localStorage
+    const activityName = offerData ? offerData.name : "JAIS FLIGHT";
+    localStorage.setItem("activityName", activityName);
 
     const formData = {
       fullName: nameInput.value.trim(),

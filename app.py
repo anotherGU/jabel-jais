@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 app.config['css_version'] = '8'
 
-@app.route('/')
+@app.route('/dubai/event-tickets/jebel-jais/buy-tickets')
 def index():
     return render_template('index.html')
 
