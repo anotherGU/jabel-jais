@@ -1,0 +1,649 @@
+/* ========== ROOT DESIGN TOKENS ========== */
+:root {
+  --ink: #15233b;
+  --muted: #8a96a8;
+  --line: #e2e8f0;
+  --accent: #1e66f5;
+  --bg: #f6f8fb;
+  --panel: #ffffff;
+  --radius: 14px;
+  --shadow: 0 16px 60px rgba(17, 24, 39, 0.12);
+  --hover: #eef4ff;
+}
+
+/* ========== GLOBAL ========== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* ========== HERO ========== */
+.hero-schedule {
+  position: relative;
+  height: 46vh;
+  background: url("https://cdn.pixabay.com/photo/2016/04/29/00/41/united-arab-emerites-1360076_1280.png")
+    center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+}
+
+.hero-schedule .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 33, 57, 0.68);
+}
+
+.hero-schedule .content {
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+}
+
+.hero-schedule h1 {
+  margin: 0 0 0.6rem;
+  font-size: 2.3rem;
+}
+
+/* ========== FORM SECTION ========== */
+.form-section {
+  padding: 56px 20px 0 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.form-box {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  padding: 28px;
+}
+
+.label {
+  display: block;
+  margin: 10px 0 8px;
+  font-weight: 600;
+}
+
+/* ========== TRIGGER BUTTON FOR DATE & TIME ========== */
+.dp-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 600;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.dp-trigger:hover {
+  box-shadow: 0 4px 16px rgba(17, 24, 39, 0.08);
+}
+
+.dp-trigger:focus {
+  outline: none;
+  border-color: #c7d2fe;
+  box-shadow: 0 0 0 4px rgba(30, 102, 245, 0.15);
+}
+
+.dp-icon {
+  display: inline-flex;
+  margin-right: 10px;
+  color: var(--ink);
+}
+
+.dp-trigger-text {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink);
+}
+
+.dp-caret {
+  display: inline-flex;
+  color: var(--ink);
+}
+
+/* Hint under date picker */
+.time-hint {
+  font-size: 14px;
+}
+
+/* ========== CONFIRM BUTTON ========== */
+.btn-primary {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 28px;
+  background: #ff6b35;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn-primary:hover {
+  background: #e85e2c;
+}
+
+/* ========== ERROR MESSAGE ========== */
+.form-error {
+  margin-top: 12px;
+  background: #ffe0e0;
+  color: #b30000;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* ========== FOOTER ========== */
+.footer-schedule {
+  text-align: center;
+  padding: 40px 20px;
+  background: #0a2139;
+  color: white;
+  font-weight: 500;
+}
+
+/* ========== MODAL BACKDROP ========== */
+.dp-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 800;
+}
+
+/* ========== MODAL PANEL (DATE + TIME SHARED STYLE) ========== */
+.dp-panel {
+  width: min(760px, 92vw);
+  background: var(--panel);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  transform: translateY(8px) scale(0.97);
+  opacity: 0;
+  animation: dpIn 0.22s ease forwards;
+}
+
+@keyframes dpIn {
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Top bar */
+.dp-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.dp-title {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--ink);
+}
+
+.dp-close {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--ink);
+  opacity: 0.8;
+  border-radius: 10px;
+  padding: 6px;
+  transition: 0.2s;
+}
+.dp-close:hover {
+  opacity: 1;
+  background: #f3f6fb;
+}
+
+/* Month controls */
+.dp-monthbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 18px 18px 8px;
+}
+
+.dp-month-label {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--ink);
+  min-width: 220px;
+  text-align: center;
+}
+
+.dp-arrow {
+  border: none;
+  background: #f6f8fb;
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+.dp-arrow:hover {
+  background: #eef2f8;
+}
+.dp-arrow[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ========== CALENDAR LAYOUT ========== */
+.dp-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  padding: 0 22px;
+  margin-top: 4px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.dp-weekdays > div {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.dp-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  padding: 6px 22px 18px 22px;
+}
+
+.dp-cell {
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  user-select: none;
+  transition: 0.15s;
+}
+.dp-cell:hover {
+  background: var(--hover);
+}
+.dp-cell.disabled {
+  color: #c1c9d6;
+  background: #f4f6fa;
+  cursor: not-allowed;
+  font-weight: 700;
+}
+.dp-cell.selected {
+  outline: 2px solid #c7d2fe;
+  background: #f5f8ff;
+  box-shadow: 0 0 0 2px rgba(30, 102, 245, 0.08) inset;
+}
+
+/* ========== TIME GRID (same style, no weekdays) ========== */
+#tp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 22px;
+}
+
+#tp-grid .dp-cell {
+  height: 48px;
+  font-size: 15px;
+}
+
+/* ========== FOOTER INSIDE MODAL ========== */
+.dp-footer {
+  padding: 14px 22px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dp-cancel {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: 0.15s;
+}
+.dp-cancel:hover {
+  background: #f6f8fb;
+}
+
+/* Плавное появление кнопки времени */
+.hidden {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* ===== ACTIVITY LOCATION SECTION ===== */
+.activity-location {
+  padding: 60px 20px 40px;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.location-box {
+  width: 100%;
+  max-width: 780px;
+  text-align: center;
+}
+
+.location-box h2 {
+  font-size: 1.8rem;
+  color: #15233b;
+  margin-bottom: 12px;
+}
+
+.location-box p {
+  color: #67758a;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+.map-container {
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* ===== ACTIVITY LOCATION + DETAILS ===== */
+.activity-location {
+  padding: 60px 20px 40px;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.location-box {
+  width: 100%;
+  max-width: 780px;
+  text-align: center;
+}
+
+.location-box h2 {
+  font-size: 1.9rem;
+  color: #15233b;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.location-box p {
+  color: #67758a;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.map-container {
+  width: 100%;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.map-container:hover {
+  transform: scale(1.01);
+}
+
+/* ===== DETAILS BELOW MAP ===== */
+.activity-details {
+  margin-top: 30px;
+  background: #f9fafc;
+  border-radius: 14px;
+  padding: 26px 22px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: 0.25s;
+}
+
+.activity-details:hover {
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px 20px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.detail-item .icon {
+  font-size: 1.3rem;
+}
+
+/* On mobile */
+@media (max-width: 640px) {
+  .activity-location {
+    padding: 40px 14px;
+  }
+
+  .location-box h2 {
+    font-size: 1.5rem;
+  }
+
+  .location-box p {
+    font-size: 0.95rem;
+  }
+
+  .activity-details {
+    margin-top: 22px;
+    padding: 20px 16px;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .detail-item {
+    justify-content: flex-start;
+  }
+}
+/* ======= Travel Guide Section ======= */
+.travel-guide-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  padding: 50px 40px;
+  margin: 80px auto;
+  max-width: 900px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.7s ease;
+}
+
+.travel-guide-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.travel-guide-header h2 {
+  font-size: 2rem;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.travel-guide-header p {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.travel-path {
+  position: relative;
+  margin: 0 auto 60px;
+  max-width: 700px;
+}
+
+.travel-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.travel-step:hover {
+  transform: translateY(-4px);
+}
+
+.icon-circle {
+  background: #ff6b35;
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.4);
+  flex-shrink: 0;
+}
+
+.travel-info h3 {
+  margin-bottom: 6px;
+  font-size: 1.1rem;
+  color: #1e293b;
+}
+
+.travel-info p {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Dotted connectors between steps */
+.connector {
+  width: 3px;
+  height: 40px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #d0d7e1,
+    #d0d7e1 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  margin: 0 auto 30px;
+}
+
+/* ======= After Payment Section ======= */
+.after-payment-guide {
+  border-bottom: 2px dashed #e2e8f0;
+  padding-bottom: 40px;
+}
+
+.after-payment-guide h2 {
+  text-align: center;
+  color: #1e293b;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+
+.payment-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.payment-step {
+  background: #f9fafc;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.payment-step:hover {
+  background: #fff;
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.step-icon {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.payment-step p {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .travel-guide-section {
+    padding: 35px 20px;
+    margin: 60px 15px;
+  }
+  .icon-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  .travel-info h3 {
+    font-size: 1rem;
+  }
+}

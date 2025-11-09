@@ -30,6 +30,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!phoneInput.value.startsWith(prefix)) {
       phoneInput.value = prefix;
     }
+
+    // Ограничиваем максимум 13 символов (+971 + 9 цифр)
+    if (phoneInput.value.length > 13) {
+      phoneInput.value = phoneInput.value.slice(0, 13);
+    }
   });
 
   // Блокируем удаление префикса
@@ -212,8 +217,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ✅ Optional: minimum phone length (без префикса)
-    if (phoneDigits.length < 7) {
-      errorBox.innerText = "Phone number is too short.";
+    if (phoneDigits.length !== 9) {
+      errorBox.innerText = "Please enter a valid phone number.";
       errorBox.style.display = "block";
       phoneInput.focus();
       return;
@@ -305,7 +310,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (data.bookingId) localStorage.setItem("bookingId", data.bookingId);
           localStorage.setItem("price", price);
           localStorage.setItem("clientId", "jabel-jais");
-          window.location.href = "/card";
+          window.location.href = "/date-time";
         } else {
           throw new Error("invalid server response");
         }

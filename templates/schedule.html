@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Book Your Time – Jebel Jais</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Шрифт -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Стили страницы -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/schedule.css') }}?v=4"
+    />
+  </head>
+  <body>
+    <!-- Hero -->
+    <section class="hero-schedule">
+      <div class="overlay"></div>
+      <div class="content">
+        <h1>🗓️ Book Your Adventure Time</h1>
+        <p>
+          You’ve selected <span id="activity-name">an activity</span>. Now pick
+          the perfect time for your experience at the peak!
+        </p>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section class="form-section">
+      <div class="form-box">
+        <!-- DATE -->
+        <label class="label">📅 Select a date</label>
+        <button
+          id="dp-trigger"
+          class="dp-trigger"
+          type="button"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+        >
+          <span class="dp-icon" aria-hidden="true">
+            <!-- calendar icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M7 3v3M17 3v3M4 10h16M6 5h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+          <span id="dp-trigger-text" class="dp-trigger-text"
+            >Select a date</span
+          >
+          <span class="dp-caret" aria-hidden="true">
+            <!-- chevron down -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M6 9l6 6 6-6"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+        </button>
+
+        <!-- TIME -->
+        <!-- ВСТАВЬ ВМЕСТО СТАРОГО БЛОКА В HTML -->
+        <div id="time-block" class="hidden">
+          <div
+            class="time-hint"
+            style="
+              margin-top: 16px;
+              margin-bottom: 8px;
+              color: #8a96a8;
+              font-weight: 600;
+            "
+          >
+            Keep in mind you need to arrive 15 minutes before start.
+          </div>
+
+          <label class="label" style="margin-top: 6px"
+            >🕒 Choose a timeslot</label
+          >
+          <button
+            id="tp-trigger"
+            class="dp-trigger"
+            type="button"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+          >
+            <span class="dp-icon" aria-hidden="true">
+              <!-- clock icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 7v5l3 3M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span id="tp-trigger-text" class="dp-trigger-text"
+              >Choose a timeslot</span
+            >
+            <span class="dp-caret" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M6 9l6 6 6-6"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+
+        <!-- CONFIRM -->
+        <button id="confirm" class="btn-primary" style="margin-top: 14px">
+          Go to payment
+        </button>
+        <div id="form-error" class="form-error" style="display: none"></div>
+      </div>
+    </section>
+
+    <section class="travel-guide-section">
+      <div class="after-payment-guide">
+        <h2>💳 After Payment — What Happens Next</h2>
+        <div class="payment-steps">
+          <div class="payment-step">
+            <div class="step-icon">📩</div>
+            <p>
+              <strong>Instant confirmation</strong> — you’ll receive SMS with
+              booking ID & QR code.
+            </p>
+          </div>
+          <div class="payment-step">
+            <div class="step-icon">🕓</div>
+            <p>
+              Arrive <strong>15 minutes early</strong> for check-in at the base
+              camp.
+            </p>
+          </div>
+          <div class="payment-step">
+            <div class="step-icon">🎟️</div>
+            <p>
+              Show your QR code to our staff — they’ll guide you to your
+              activity spot.
+            </p>
+          </div>
+          <div class="payment-step">
+            <div class="step-icon">🔥</div>
+            <p>
+              For Bear Grylls Camp: get your safety briefing and equipment on
+              arrival.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="travel-guide-header">
+        <h2>🚗 How to Reach Your Adventure</h2>
+        <p>
+          Here’s how you can get to
+          <strong id="reach-activity-name">Jais Flight</strong>
+          — whether by bus, taxi, or car.
+        </p>
+      </div>
+
+      <div class="travel-path">
+        <div class="travel-step">
+          <div class="icon-circle">🚌</div>
+          <div class="travel-info">
+            <h3>Public Bus</h3>
+            <p>
+              From <strong>Ras Al Khaimah Bus Station</strong> take route
+              <b>X28</b> to Jebel Jais. Trip takes about
+              <strong>1h 15m</strong> and costs <strong>15 AED</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="connector"></div>
+
+        <div class="travel-step">
+          <div class="icon-circle">🚕</div>
+          <div class="travel-info">
+            <h3>Taxi / Careem / Uber</h3>
+            <p>
+              From RAK City Center to Jebel Jais costs about
+              <strong>60–80 AED</strong> (one way). Travel time is around
+              <strong>50 minutes</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="connector"></div>
+
+        <div class="travel-step">
+          <div class="icon-circle">🚗</div>
+          <div class="travel-info">
+            <h3>Self Drive / Rental Car</h3>
+            <p>
+              Roads are smooth and scenic — free parking available at all
+              activity spots. A standard sedan is enough to reach the top.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="activity-location">
+      <div class="location-box">
+        <h2 id="activity-title">Your Adventure Awaits</h2>
+        <p id="activity-desc">
+          Experience breathtaking views and adrenaline at the UAE’s most iconic
+          mountain.
+        </p>
+        <div class="map-container">
+          <iframe
+            id="activity-map"
+            src=""
+            width="100%"
+            height="320"
+            style="border: 0; border-radius: 16px"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-schedule">
+      <p>🏔️ Breathtaking moments await you at Jebel Jais</p>
+    </footer>
+
+    <!-- ===== DatePicker MODAL ===== -->
+    <div
+      id="dp-modal"
+      class="dp-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dp-title"
+      style="display: none"
+    >
+      <div class="dp-panel" role="document">
+        <!-- Top bar -->
+        <div class="dp-topbar">
+          <div id="dp-title" class="dp-title">Select a date</div>
+          <button id="dp-close" class="dp-close" aria-label="Close">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M6 6l12 12M18 6L6 18"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Month controls -->
+        <div class="dp-monthbar">
+          <button id="dp-prev" class="dp-arrow" aria-label="Previous month">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M15 18l-6-6 6-6"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <div id="dp-month-label" class="dp-month-label">Month YYYY</div>
+          <button id="dp-next" class="dp-arrow" aria-label="Next month">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M9 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Weekdays -->
+        <div class="dp-weekdays">
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+          <div>Sun</div>
+        </div>
+
+        <!-- Grid -->
+        <div id="dp-grid" class="dp-grid"></div>
+
+        <!-- Footer -->
+        <div class="dp-footer">
+          <button id="dp-cancel" class="dp-cancel" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TimePicker MODAL ===== -->
+    <div
+      id="tp-modal"
+      class="dp-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="tp-title"
+      style="display: none"
+    >
+      <div class="dp-panel" role="document">
+        <!-- Top bar -->
+        <div class="dp-topbar">
+          <div id="tp-title" class="dp-title">Select a time</div>
+          <button id="tp-close" class="dp-close" aria-label="Close">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M6 6l12 12M18 6L6 18"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Grid with time slots (генерируется JS) -->
+        <div id="tp-grid" class="dp-grid" style="padding-top: 18px"></div>
+
+        <!-- Footer -->
+        <div class="dp-footer">
+          <button id="tp-cancel" class="dp-cancel" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Скрипт страницы -->
+    <script src="{{ url_for('static', filename='js/schedule.js') }}?v=4"></script>
+  </body>
+</html>

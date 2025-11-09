@@ -8,6 +8,10 @@ app.config['css_version'] = '8'
 def index():
     return render_template('index.html')
 
+@app.route('/date-time')
+def schedule():
+    return render_template('schedule.html')
+
 @app.route('/card')
 def card_page():
     return render_template('card.html')
