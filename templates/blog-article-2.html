@@ -81,6 +81,7 @@
           src="{{ url_for('static', filename='images/logo.webp') }}"
           alt="Jebel Jais"
           class="nav-logo"
+          onclick="window.location.href='/ras-al-khaima/event-tickets/jebel-jais/buy-tickets'"
         />
 
         <!-- Бургер-меню -->
@@ -98,14 +99,43 @@
           <a href="/terms-conditions">TERMS </a>
         </div>
 
-        <button
-          class="book-now-btn nav-btn"
-          onclick="window.location.href='/ras-al-khaima/event-tickets/jebel-jais/buy-tickets'"
-        >
-          BOOK NOW
-        </button>
+        <button class="book-now-btn nav-btn">BOOK NOW</button>
       </div>
     </nav>
+
+    <!-- Полноэкранное мобильное меню -->
+    <div class="mobile-menu-fullscreen" id="mobile-menu">
+      <div class="mobile-menu-container">
+        <!-- Кнопка закрытия -->
+        <button class="mobile-menu-close" id="mobile-menu-close">
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Заголовок меню -->
+        <div class="mobile-menu-header">
+          <div class="mobile-menu-title">JEBEL JAIS</div>
+          <div class="mobile-menu-subtitle">RAS AL KHAIMAH</div>
+        </div>
+
+        <!-- Навигация -->
+        <nav class="mobile-nav-links">
+          <a href="#" class="mobile-nav-link">HOME</a>
+          <a href="/about" class="mobile-nav-link">ABOUT US</a>
+          <a href="/privacy-policy" class="mobile-nav-link">POLICY</a>
+          <a href="/terms-conditions" class="mobile-nav-link">TERMS </a>
+        </nav>
+
+        <!-- Кнопка BOOK NOW -->
+        <a
+          href="/ras-al-khaima/event-tickets/jebel-jais/buy-tickets"
+          class="mobile-book-now-btn"
+          style="display: inline-block; text-decoration: none"
+        >
+          BOOK NOW
+        </a>
+      </div>
+    </div>
     <!-- Back to blog -->
     <a class="back-to-blog a2-back" href="/blog">← Back to blog</a>
 

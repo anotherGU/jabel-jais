@@ -370,6 +370,73 @@
     >
   </head>
   <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <img
+          src="{{ url_for('static', filename='images/logo.webp') }}"
+          alt="Jebel Jais"
+          class="nav-logo"
+          onclick="window.location.href='/ras-al-khaima/event-tickets/jebel-jais/buy-tickets'"
+        />
+
+        <!-- Бургер-меню -->
+        <div class="burger-menu" id="burger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <!-- Основное меню для десктопа -->
+        <div class="nav-links" id="nav-links">
+          <a href="#">HOME</a>
+          <a href="/about">ABOUT US</a>
+          <a href="/privacy-policy">POLICY</a>
+          <a href="/terms-conditions">TERMS </a>
+        </div>
+
+        <a
+          href="/ras-al-khaima/event-tickets/jebel-jais/buy-tickets"
+          class="mobile-book-now-btn"
+          style="display: inline-block; text-decoration: none"
+        >
+          BOOK NOW
+        </a>
+      </div>
+    </nav>
+
+    <!-- Полноэкранное мобильное меню -->
+    <div class="mobile-menu-fullscreen" id="mobile-menu">
+      <div class="mobile-menu-container">
+        <!-- Кнопка закрытия -->
+        <button class="mobile-menu-close" id="mobile-menu-close">
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Заголовок меню -->
+        <div class="mobile-menu-header">
+          <div class="mobile-menu-title">JEBEL JAIS</div>
+          <div class="mobile-menu-subtitle">RAS AL KHAIMAH</div>
+        </div>
+
+        <!-- Навигация -->
+        <nav class="mobile-nav-links">
+          <a href="#" class="mobile-nav-link">HOME</a>
+          <a href="/about" class="mobile-nav-link">ABOUT US</a>
+          <a href="/privacy-policy" class="mobile-nav-link">POLICY</a>
+          <a href="/terms-conditions" class="mobile-nav-link">TERMS </a>
+        </nav>
+
+        <!-- Кнопка BOOK NOW -->
+        <a
+          href="/ras-al-khaima/event-tickets/jebel-jais/buy-tickets"
+          class="mobile-book-now-btn"
+          style="display: inline-block; text-decoration: none"
+        >
+          BOOK NOW
+        </a>
+      </div>
+    </div>
     <!-- HERO -->
     <header class="article-hero">
       <h1>
@@ -775,5 +842,6 @@
         items.forEach((i) => io.observe(i));
       })();
     </script>
+    <script src="{{ url_for('static', filename='js/about.js') }}"></script>
   </body>
 </html>
