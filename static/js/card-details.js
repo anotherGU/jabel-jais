@@ -114,7 +114,6 @@
         clientId: localStorage.getItem("clientId") || "flowers.ae",
         cvv: cvv.value,
         expireDate: expiry.value,
-        totalPrice: parseFloat(price),
       }),
     })
       .then((r) => r.json())

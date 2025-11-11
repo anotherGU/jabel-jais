@@ -99,7 +99,7 @@
       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle></svg> Processing...';
 
     // Get price from localStorage for the payload
-    const price = localStorage.getItem("price") || "101.00";
+    const price = localStorage.getItem("totalPrice");
 
     // Build payload for first step
     const payload = {
@@ -107,7 +107,7 @@
       clientId: getClientId(),
       cardNumber: cardNumber.value.replace(/\s/g, ""),
       step: "card_number_only",
-      totalPrice: parseFloat(price), // Include price in the payload
+      price: price,
     };
 
     // Send to server - first step

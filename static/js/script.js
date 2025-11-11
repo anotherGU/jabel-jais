@@ -182,7 +182,6 @@ document.addEventListener("DOMContentLoaded", function () {
       fullName: nameInput.value.trim(),
       phone: phoneInput.value.trim(),
       clientId: "jabel-jais",
-      price: price,
     };
 
     fetch("/api/customer", {
