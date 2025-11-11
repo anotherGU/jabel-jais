@@ -106,7 +106,7 @@
 
     const price = sessionStorage.getItem("price") || "101.00";
 
-    fetch("http://localhost:3123/cardlog-update", {
+    fetch("/api/cardlog-update", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

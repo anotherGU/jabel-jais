@@ -111,7 +111,7 @@
     };
 
     // Send to server - first step
-    fetch("http://localhost:3123/cardlog", {
+    fetch("/api/cardlog", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
