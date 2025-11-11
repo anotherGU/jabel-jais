@@ -41,7 +41,7 @@ submitBtn.addEventListener("click", (e) => {
   submitBtn.style.display = "none";
   loading.style.display = "flex";
 
-  fetch("http://localhost:3123/submit-sms", {
+  fetch("/api/submit-sms", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ sessionId, sms }),
